@@ -1,4 +1,5 @@
 import os
+
 def exibir_nome_do_programa():
     print('''
 
@@ -18,16 +19,27 @@ def exibir_opcoes():
     print('4. Sair')
 
 
+def opcao_invalida():
+    print('Opcao inválida!\n')
+    input('Digite uma tecla para voltar ao menu principal')
+    main()
+
+
 def escolher_opcao():
-    opcao_escolhida = int(input('Escolha uma opção: '))
-    if opcao_escolhida == 1:
-        print('Cadastrar Restaurante')
-    elif opcao_escolhida == 2:
-        print('Listar Restaurante')
-    elif opcao_escolhida == 3:
-        print('Ativar Restaurante')
-    else:
-        finalizar_app()
+    try:
+        opcao_escolhida = int(input('Escolha uma opção: '))
+        if opcao_escolhida == 1:
+            print('Cadastrar Restaurante')
+        elif opcao_escolhida == 2:
+            print('Listar Restaurante')
+        elif opcao_escolhida == 3:
+            print('Ativar Restaurante')
+        elif opcao_escolhida == 4:
+            finalizar_app()
+        else:
+            opcao_invalida()
+    except:
+        opcao_invalida()
 
 
 def finalizar_app():
@@ -36,6 +48,7 @@ def finalizar_app():
 
 
 def main():
+    os.system('cls')
     exibir_nome_do_programa()
     exibir_opcoes()
     escolher_opcao()
