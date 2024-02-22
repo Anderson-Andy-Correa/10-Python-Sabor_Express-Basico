@@ -32,29 +32,39 @@ def voltar_ao_menu_principal():
     main()
 
 
-def opcao_invalida():
-    print('Opcao inválida!\n')
+def opcao_invalida(mensagem):
+    print(mensagem)
     voltar_ao_menu_principal()
 
 
 def exibir_subtitulo(subtitulo):
     os.system('cls') # No Windows
-    linha = '*' * (len(subtitulo))
+    linha = '*' * (len(subtitulo) + 4)
     print(f'\033[1;034m{linha}\033[0;037m')
-    print(f'\033[1;032m{subtitulo}\033[0;037m')
+    print(f'  \033[1;032m{subtitulo}\033[0;037m  ')
     print(f'\033[1;034m{linha}\033[0;037m')
     print()
 
 
 def cadastrar_novo_resteurante():
-    exibir_subtitulo('Cadastro de novos resteurantes')
-    nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ') # Alt-z para visualizar tudo
-    categoria = input(f'Digite a categoria do restaurante {nome_do_restaurante}: ') 
-    dados_do_restaurante = {'nome': nome_do_restaurante, 'categoria': categoria, 'ativo': False}
-    restaurantes.append(dados_do_restaurante)
-    print(f'O restaurante {nome_do_restaurante} foi adicionado com sucesso!')
-    voltar_ao_menu_principal()
+    try:
+        exibir_subtitulo('Cadastro de novos resteurantes')
+        nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ') # Alt-z para visualizar tudo
+        if not nome_do_restaurante:
+            raise ValueError('Nome do restaurante não foi inserido')
 
+        categoria = input(f'Digite a categoria do restaurante {nome_do_restaurante}: ')
+        if not categoria:
+            raise ValueError('Categoria não foi inserida')
+
+        dados_do_restaurante = {'nome': nome_do_restaurante, 'categoria': categoria, 'ativo': False}
+
+        restaurantes.append(dados_do_restaurante)
+        print(f'O restaurante {nome_do_restaurante} foi adicionado com sucesso!')
+        voltar_ao_menu_principal()
+
+    except Exception as ve:
+        opcao_invalida(ve)
 
 def listar_restaurantes():
     exibir_subtitulo('Listando restaurantes')
@@ -95,10 +105,10 @@ def escolher_opcao():
             case 2: listar_restaurantes()
             case 3: alternar_estado_restaurante()
             case 4: finalizar_app()
-            case _:opcao_invalida()
-            
+            case _:opcao_invalida("Opcao inválida!\n")
+
     except Exception:
-        opcao_invalida()
+        opcao_invalida("Opcao inválida! \n")
 
 
 def main():
