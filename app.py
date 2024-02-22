@@ -90,16 +90,13 @@ def alternar_estado_restaurante():
 def escolher_opcao():
     try:
         opcao_escolhida = int(input('Escolha uma opção: '))
-        if opcao_escolhida == 1:
-            cadastrar_novo_resteurante()
-        elif opcao_escolhida == 2:
-            listar_restaurantes()
-        elif opcao_escolhida == 3:
-            alternar_estado_restaurante()
-        elif opcao_escolhida == 4:
-            finalizar_app()
-        else:
-            opcao_invalida()
+        match opcao_escolhida:
+            case 1: cadastrar_novo_resteurante()
+            case 2: listar_restaurantes()
+            case 3: alternar_estado_restaurante()
+            case 4: finalizar_app()
+            case _:opcao_invalida()
+            
     except Exception:
         opcao_invalida()
 
