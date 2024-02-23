@@ -1,7 +1,8 @@
+'''Importação para poder limpar a tela'''
 import os
 
-restaurantes = [{'nome': 'Praça', 'categoria': 'Japonesa', 'ativo': False}, 
-                {'nome': 'Pizza Suprema', 'categoria': 'Pizza', 'ativo': True}, 
+restaurantes = [{'nome': 'Praça', 'categoria': 'Japonesa', 'ativo': False},
+                {'nome': 'Pizza Suprema', 'categoria': 'Pizza', 'ativo': True},
                 {'nome': 'Cantina', 'categoria': 'Italizano', 'ativo': False}]
 
 def exibir_nome_do_programa():
@@ -131,7 +132,7 @@ def alternar_estado_restaurante():
         
     Output:
         Alteração do estado do restaurante selecionado'''
-    
+
     exibir_subtitulo('Alterando estado do restaurante')
     nome_restaurante = input('Digite o nome do restaurante que deseja alterar o estado: ')
     restaurante_encontrado = False
@@ -159,7 +160,7 @@ def escolher_opcao():
     Output:
         Executa a operação escolhida.
     '''
-    
+
     try:
         opcao_escolhida = int(input('Escolha uma opção: '))
         match opcao_escolhida:
