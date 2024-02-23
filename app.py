@@ -86,7 +86,8 @@ def cadastrar_novo_resteurante():
     '''
     try:
         exibir_subtitulo('Cadastro de novos resteurantes')
-        nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ') # Alt-z para visualizar tudo
+        nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ') 
+        # Alt-z para visualizar tudo
         if not nome_do_restaurante:
             raise ValueError('Nome do restaurante não foi inserido')
 
@@ -141,7 +142,8 @@ def alternar_estado_restaurante():
         if nome_restaurante == restaurante['nome']:
             restaurante_encontrado = True
             restaurante['ativo'] = not restaurante['ativo']
-            mensagem = f'O restaurante {nome_restaurante} foi ativado com sucesso' if restaurante['ativo'] else f'O restaurante {nome_restaurante} foi desativado com sucesso'
+            status = 'ativado' if restaurante['ativo'] else 'dessativado'
+            mensagem = f'O restaurante {nome_restaurante} foi {status} com sucesso'
             print(mensagem)
 
     if not restaurante_encontrado:
